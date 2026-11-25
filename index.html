@@ -16,6 +16,24 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <script>
+
+    function copyEmail() {
+        const email = "rferdianto28@gmail.com";
+        const feedback = document.getElementById("copy-feedback");
+
+        navigator.clipboard.writeText(email).then(() => {
+            feedback.classList.remove("opacity-0", "translate-y-3");
+            feedback.classList.add("opacity-100", "translate-y-0");
+
+            setTimeout(() => {
+                feedback.classList.remove("opacity-100", "translate-y-0");
+                feedback.classList.add("opacity-0", "translate-y-3");
+            }, 2000);
+        }).catch(() => {
+            alert("Gagal menyalin email.");
+        });
+    }
+
         tailwind.config = {
             theme: {
                 extend: {
@@ -145,25 +163,38 @@
                     </p>
 
                     <!-- Informasi Kontak Publik Aman -->
-                    <div class="pt-3 flex flex-wrap items-center gap-y-2 gap-x-5 text-sm text-slate-300 print-text-muted">
+                    <div class="pt-3 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm text-slate-300 print-text-muted">
                         <div class="flex items-center gap-2">
                             <i class="fa-solid fa-location-dot text-sky-400"></i>
                             <span data-i18n="contact_location">Padang, Sumatera Barat, Indonesia</span>
                         </div>
-                        <button onclick="copyEmail()" class="flex items-center gap-2 hover:text-white transition-colors group text-left" title="Klik untuk menyalin email">
+                    
+                        <button onclick="copyEmail()" class="flex items-center gap-2 hover:text-white transition-colors group text-left"
+                            title="Klik untuk menyalin email">
                             <i class="fa-solid fa-envelope text-sky-400"></i>
                             <span>rferdianto28@gmail.com</span>
-                            <span id="copy-feedback" class="no-print text-xs bg-slate-700 text-teal-300 px-2 py-0.5 rounded opacity-0 transition-opacity">Tersalin!</span>
                         </button>
-                        <a href="https://www.linkedin.com/in/username-linkedin/" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-white transition-colors">
-    <i class="fa-brands fa-linkedin text-sky-400"></i>
-    <span>LinkedIn</span>
-</a>
-                        <a href="https://instagram.com/ferdianto_rio" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-white transition-colors">
+                    
+                        <a href="https://www.linkedin.com/in/username-linkedin/" target="_blank" rel="noopener noreferrer"
+                            class="flex items-center gap-2 hover:text-white transition-colors">
+                            <i class="fa-brands fa-linkedin text-sky-400"></i>
+                            <span>LinkedIn</span>
+                        </a>
+                    
+                        <a href="https://instagram.com/ferdianto_rio" target="_blank" rel="noopener noreferrer"
+                            class="flex items-center gap-2 hover:text-white transition-colors">
                             <i class="fa-brands fa-instagram text-sky-400"></i>
                             <span>@ferdianto_rio</span>
                         </a>
                     </div>
+                    
+                    <!-- Toast Notification -->
+                    <div id="copy-feedback"
+                        class="fixed bottom-6 right-6 z-50 flex items-center gap-2 bg-slate-800 text-teal-300 px-4 py-3 rounded-lg shadow-lg border border-slate-700 opacity-0 translate-y-3 pointer-events-none transition-all duration-300">
+                        <i class="fa-solid fa-circle-check"></i>
+                        <span>Email berhasil disalin!</span>
+                    </div>
+
                 </div>
 
                 <!-- Foto Profil dari img/pasfoto dengan Fallback Aman -->
