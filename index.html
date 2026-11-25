@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rio Ferdianto Putra — Portofolio & CV</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome untuk Ikon Profesional -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        navy: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#090d16',
+                        },
+                        accent: {
+                            500: '#0ea5e9',
+                            600: '#0284c7',
+                            teal: '#14b8a6',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Pengaturan khusus untuk mode cetak / simpan PDF */
+        @media print {
+            .no-print {
+                display: none !important;
+            }
+            body {
+                background-color: #ffffff !important;
+                color: #0f172a !important;
+                font-size: 11pt;
+            }
+            .print-shadow-none {
+                box-shadow: none !important;
+                border: 1px solid #e2e8f0 !important;
+            }
+            .print-bg-white {
+                background: #ffffff !important;
+                color: #0f172a !important;
+            }
+            .print-text-dark {
+                color: #0f172a !important;
+            }
+            .print-text-muted {
+                color: #475569 !important;
+            }
+            .print-border {
+                border-color: #cbd5e1 !important;
+            }
+            section {
+                page-break-inside: avoid;
+                margin-bottom: 1.5rem !important;
+            }
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased selection:bg-sky-500 selection:text-white">
+
+    <!-- Navbar / Header Navigasi -->
+    <header class="no-print sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 transition-all">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <!-- Monogram / Brand -->
+            <a href="#" class="flex items-center gap-2.5 group">
+                <img
+                src="img/pasfoto.jpg"
+                alt="Foto Rio Ferdianto Putra"
+                class="w-9 h-9 rounded-lg object-cover object-[center_35%] border border-slate-200 group-hover:border-sky-500 transition-colors"
+                />
+                <span class="font-heading font-bold text-slate-900 hidden sm:inline-block">Rio Ferdianto Putra</span>
+            </a>
+
+            <!-- Menu Navigasi Desktop -->
+            <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
+                <a href="#tentang" data-i18n="nav_about" class="hover:text-sky-600 transition-colors">Tentang Saya</a>
+                <a href="#pengalaman" data-i18n="nav_exp" class="hover:text-sky-600 transition-colors">Pengalaman</a>
+                <a href="#proyek" data-i18n="nav_projects" class="hover:text-sky-600 transition-colors">Proyek</a>
+                <a href="#pendidikan" data-i18n="nav_edu" class="hover:text-sky-600 transition-colors">Pendidikan</a>
+                <a href="#keahlian" data-i18n="nav_skills" class="hover:text-sky-600 transition-colors">Keahlian</a>
+            </nav>
+
+            <!-- Kontrol Bahasa & Tombol Cetak -->
+            <div class="flex items-center gap-2 sm:gap-3">
+                <!-- Language Switcher Pill -->
+                <div class="inline-flex items-center bg-slate-100 p-1 rounded-lg border border-slate-200" role="group" aria-label="Pilih Bahasa / Select Language">
+                    <button id="btn-lang-id" onclick="setLanguage('id')" class="px-2.5 py-1 text-xs font-semibold rounded-md transition-all bg-slate-900 text-white shadow-sm">
+                        ID
+                    </button>
+                    <button id="btn-lang-en" onclick="setLanguage('en')" class="px-2.5 py-1 text-xs font-semibold rounded-md transition-all text-slate-600 hover:text-slate-900">
+                        EN
+                    </button>
+                </div>
+
+                <!-- Tombol Cetak / PDF -->
+                <button onclick="window.print()" class="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 bg-sky-600 hover:bg-sky-700 text-white text-xs sm:text-sm font-medium rounded-lg shadow-sm transition-all active:scale-95" title="Cetak atau Simpan sebagai PDF">
+                    <i class="fa-solid fa-print"></i>
+                    <span data-i18n="btn_print" class="hidden sm:inline">Cetak / PDF</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Konten Utama -->
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 space-y-10">
+
+        <!-- Hero / Profil Header (Tanpa Foto Pasfoto & Data Sensitif) -->
+        <section class="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 print-bg-white rounded-2xl p-6 sm:p-10 text-white print-shadow-none shadow-xl relative overflow-hidden">
+            <!-- Dekorasi Latar Belakang Halus -->
+            <div class="no-print absolute -right-16 -top-16 w-64 h-64 bg-sky-500/10 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="no-print absolute -left-16 -bottom-16 w-64 h-64 bg-teal-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-6">
+                <div class="space-y-3 max-w-2xl">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-teal-500/15 border border-teal-400/30 text-teal-300 print-text-dark print-border text-xs font-semibold tracking-wide">
+                        <i class="fa-solid fa-certificate text-teal-400"></i>
+                        <span data-i18n="hero_badge">Tersertifikasi MTCNA • Lulusan Teknik Informatika</span>
+                    </div>
+                    
+                    <h1 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white print-text-dark">
+                        RIO FERDIANTO PUTRA
+                    </h1>
+                    
+                    <p data-i18n="hero_tagline" class="text-base sm:text-lg text-sky-300 print-text-muted font-medium">
+                        IT & Web Developer | Network Enthusiast (MTCNA Certified)
+                    </p>
+
+                    <!-- Informasi Kontak Publik Aman -->
+                    <div class="pt-3 flex flex-wrap items-center gap-y-2 gap-x-5 text-sm text-slate-300 print-text-muted">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-location-dot text-sky-400"></i>
+                            <span data-i18n="contact_location">Padang, Sumatera Barat, Indonesia</span>
+                        </div>
+                        <button onclick="copyEmail()" class="flex items-center gap-2 hover:text-white transition-colors group text-left" title="Klik untuk menyalin email">
+                            <i class="fa-solid fa-envelope text-sky-400"></i>
+                            <span>rferdianto28@gmail.com</span>
+                            <span id="copy-feedback" class="no-print text-xs bg-slate-700 text-teal-300 px-2 py-0.5 rounded opacity-0 transition-opacity">Tersalin!</span>
+                        </button>
+                        <a href="https://instagram.com/ferdianto_rio" target="_blank" rel="noopener noreferrer" class="flex items-center gap-2 hover:text-white transition-colors">
+                            <i class="fa-brands fa-instagram text-sky-400"></i>
+                            <span>@ferdianto_rio</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Foto Profil dari img/pasfoto dengan Fallback Aman -->
+                <div class="flex flex-col items-center justify-center shrink-0">
+                    <div class="w-28 h-28 sm:w-32 sm:h-32 rounded-2xl bg-gradient-to-tr from-sky-500 to-teal-400 p-0.5 shadow-lg">
+                        <img
+                            src="img/pasfoto.jpg"
+                            alt="Foto Profil Rio Ferdianto Putra"
+                            data-i18n-alt="photo_alt"
+                            onerror="this.onerror=null; this.src='https://placehold.co/256x256/0f172a/38bdf8?text=RFP';"
+                            class="w-full h-full object-cover object-[center_35%] rounded-2xl bg-slate-900"
+                        />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tentang Saya / About Me -->
+        <section id="tentang" class="bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm print-shadow-none">
+            <div class="flex items-center gap-3 mb-4">
+                <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-user-tie"></i>
+                </div>
+                <h2 data-i18n="section_about" class="font-heading text-xl sm:text-2xl font-bold text-slate-900">Tentang Saya</h2>
+            </div>
+            <p data-i18n="about_desc" class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                Lulusan Pendidikan Teknik Informatika Universitas Negeri Padang yang adaptif dan cepat belajar terhadap teknologi baru. Memiliki keterampilan dalam Web Design dan Pengembangan Web menggunakan HTML, CSS, PHP, Laravel, dan MySQL. Memahami dasar jaringan, konfigurasi perangkat, serta troubleshooting. Bersertifikasi MTCNA (MikroTik Certified Network Associate) dengan kompetensi dalam manajemen perangkat MikroTik.
+            </p>
+        </section>
+
+        <!-- Pengalaman Magang / Internship Experience -->
+        <section id="pengalaman" class="space-y-4">
+            <div class="flex items-center gap-3 px-1">
+                <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-briefcase"></i>
+                </div>
+                <h2 data-i18n="section_exp" class="font-heading text-xl sm:text-2xl font-bold text-slate-900">Pengalaman Magang</h2>
+            </div>
+
+            <div class="grid grid-cols-1 gap-4">
+                <!-- Pengalaman 1 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:border-sky-300 transition-all print-shadow-none">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                        <h3 class="font-heading text-lg font-bold text-slate-900">Yayasan Igasar Semen Padang</h3>
+                        <span data-i18n="exp_badge_1" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-teal-50 text-teal-700 border border-teal-200 w-fit">
+                            Program Magang KEMNAKER
+                        </span>
+                    </div>
+                    <p data-i18n="exp_role_1" class="text-sky-600 font-semibold text-sm mb-2">
+                        Magang Program KEMNAKER sebagai Staff ICT
+                    </p>
+                    <p data-i18n="exp_desc_1" class="text-slate-600 text-sm leading-relaxed">
+                        Bertanggung jawab dalam dukungan operasional teknologi informasi dan komunikasi (ICT), pemeliharaan sistem jaringan, serta pengembangan aplikasi internal untuk menunjang digitalisasi administrasi yayasan.
+                    </p>
+                </div>
+
+                <!-- Pengalaman 2 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:border-sky-300 transition-all print-shadow-none">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                        <h3 class="font-heading text-lg font-bold text-slate-900">Dinas Penanaman Modal dan Pelayanan Terpadu Satu Pintu Sumatera Barat</h3>
+                        <span data-i18n="exp_badge_2" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-sky-50 text-sky-700 border border-sky-200 w-fit">
+                            Praktek Lapangan Industri
+                        </span>
+                    </div>
+                    <p data-i18n="exp_role_2" class="text-sky-600 font-semibold text-sm mb-2">
+                        Praktek Lapangan Industri di Bidang Pengendalian Pelaksanaan Penanaman Modal dan Sistem Informasi Penanaman Modal
+                    </p>
+                    <p data-i18n="exp_desc_2" class="text-slate-600 text-sm leading-relaxed">
+                        Membantu pengelolaan data dan sistem informasi penanaman modal serta mendukung kelancaran operasional teknis pada bidang pengendalian pelaksanaan penanaman modal daerah.
+                    </p>
+                </div>
+
+                <!-- Pengalaman 3 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:border-sky-300 transition-all print-shadow-none">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-2">
+                        <h3 class="font-heading text-lg font-bold text-slate-900">SMK Muhammadiyah 1 Padang</h3>
+                        <span data-i18n="exp_badge_3" class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-700 border border-slate-200 w-fit">
+                            Praktek Lapangan Kependidikan
+                        </span>
+                    </div>
+                    <p data-i18n="exp_role_3" class="text-sky-600 font-semibold text-sm mb-2">
+                        Praktek Lapangan Kependidikan di Jurusan TKJ (Teknik Komputer dan Jaringan)
+                    </p>
+                    <p data-i18n="exp_desc_3" class="text-slate-600 text-sm leading-relaxed">
+                        Melaksanakan kegiatan pembelajaran praktik dan teori pada kompetensi keahlian Teknik Komputer dan Jaringan (TKJ), serta membantu pengelolaan laboratorium komputer sekolah.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Riwayat Proyek / Project History -->
+        <section id="proyek" class="space-y-4">
+            <div class="flex items-center gap-3 px-1">
+                <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-lg">
+                    <i class="fa-solid fa-code"></i>
+                </div>
+                <h2 data-i18n="section_projects" class="font-heading text-xl sm:text-2xl font-bold text-slate-900">Riwayat Proyek</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <!-- Proyek 1 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex flex-col justify-between print-shadow-none">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-teal-50 text-teal-600 flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-file-shield text-lg"></i>
+                        </div>
+                        <h3 data-i18n="proj_title_1" class="font-heading text-base font-bold text-slate-900 mb-2">
+                            Aplikasi Sistem Dokumen Online Yayasan Igasar Semen Padang
+                        </h3>
+                        <p data-i18n="proj_desc_1" class="text-slate-600 text-sm leading-relaxed mb-4">
+                            Sistem manajemen dan pengarsipan dokumen berbasis web untuk mempermudah akses, distribusi, serta pengelolaan berkas digital di lingkungan Yayasan Igasar Semen Padang.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100">
+                        <span class="px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded text-xs font-medium">PHP</span>
+                        <span class="px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded text-xs font-medium">Laravel</span>
+                        <span class="px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded text-xs font-medium">MySQL</span>
+                    </div>
+                </div>
+
+                <!-- Proyek 2 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex flex-col justify-between print-shadow-none">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-sky-50 text-sky-600 flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-globe text-lg"></i>
+                        </div>
+                        <h3 data-i18n="proj_title_2" class="font-heading text-base font-bold text-slate-900 mb-2">
+                            Website Profile Semen Padang Schools (SD, SMP, SMA, SMK Semen Padang)
+                        </h3>
+                        <p data-i18n="proj_desc_2" class="text-slate-600 text-sm leading-relaxed mb-4">
+                            Portal profil resmi terintegrasi untuk unit pendidikan SD, SMP, SMA, dan SMK Semen Padang yang menyajikan informasi akademik, fasilitas, dan publikasi kegiatan sekolah.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100">
+                        <span class="px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded text-xs font-medium">HTML & CSS</span>
+                        <span class="px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded text-xs font-medium">PHP</span>
+                        <span class="px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded text-xs font-medium">Web Design</span>
+                    </div>
+                </div>
+
+                <!-- Proyek 3 -->
+                <div class="bg-white rounded-2xl p-6 border border-slate-200/80 shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all flex flex-col justify-between print-shadow-none">
+                    <div>
+                        <div class="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center mb-4">
+                            <i class="fa-solid fa-clipboard-user text-lg"></i>
+                        </div>
+                        <h3 data-i18n="proj_title_3" class="font-heading text-base font-bold text-slate-900 mb-2">
+                            Aplikasi Sistem Monitoring Kehadiran dan Pelanggaran Siswa SMK Muhammadiyah 1 Padang
+                        </h3>
+                        <p data-i18n="proj_desc_3" class="text-slate-600 text-sm leading-relaxed mb-4">
+                            Aplikasi web untuk mencatat, memantau, dan merekapitulasi data presensi harian serta poin kedisiplinan siswa secara terstruktur bagi pihak sekolah.
+                        </p>
+                    </div>
+                    <div class="flex flex-wrap gap-1.5 pt-3 border-t border-slate-100">
+                        <span class="px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded text-xs font-medium">PHP</span>
+                        <span class="px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded text-xs font-medium">MySQL</span>
+                        <span class="px-2.5 py-0.5 bg-slate-100 text-slate-700 rounded text-xs font-medium">HTML/CSS</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Pendidikan & Sertifikasi + Keahlian (2 Kolom pada Desktop) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+            
+            <!-- Kolom Kiri: Pendidikan & Sertifikasi (7 Kolom) -->
+            <section id="pendidikan" class="lg:col-span-7 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm print-shadow-none space-y-6">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <h2 data-i18n="section_edu" class="font-heading text-xl sm:text-2xl font-bold text-slate-900">Pendidikan & Sertifikasi</h2>
+                </div>
+
+                <!-- Item Pendidikan -->
+                <div class="relative pl-6 border-l-2 border-sky-500 space-y-1">
+                    <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-sky-500 border-4 border-white"></div>
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <h3 class="font-heading text-base sm:text-lg font-bold text-slate-900">Universitas Negeri Padang</h3>
+                        <span class="text-xs font-bold px-2.5 py-1 rounded-md bg-slate-100 text-slate-700">2020 - 2025</span>
+                    </div>
+                    <p data-i18n="edu_major" class="text-sky-600 font-medium text-sm">Pendidikan Teknik Informatika</p>
+                </div>
+
+                <hr class="border-slate-100">
+
+                <!-- Item Sertifikasi -->
+                <div class="relative pl-6 border-l-2 border-teal-500 space-y-1">
+                    <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-teal-500 border-4 border-white"></div>
+                    <div class="flex flex-wrap items-center justify-between gap-2">
+                        <h3 class="font-heading text-base sm:text-lg font-bold text-slate-900">MTCNA (MikroTik Certified Network Associate)</h3>
+                        <span data-i18n="cert_badge" class="text-xs font-bold px-2.5 py-1 rounded-md bg-teal-50 text-teal-700 border border-teal-200">Sertifikasi Resmi</span>
+                    </div>
+                    <p data-i18n="cert_desc" class="text-slate-600 text-sm">
+                        Kompetensi profesional dalam konfigurasi, manajemen perangkat router, keamanan jaringan dasar, dan troubleshooting berbasis MikroTik RouterOS.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Kolom Kanan: Keahlian / Skills (5 Kolom) -->
+            <section id="keahlian" class="lg:col-span-5 bg-white rounded-2xl p-6 sm:p-8 border border-slate-200/80 shadow-sm print-shadow-none flex flex-col justify-between">
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <div class="w-10 h-10 rounded-xl bg-sky-50 text-sky-600 flex items-center justify-center text-lg">
+                            <i class="fa-solid fa-layer-group"></i>
+                        </div>
+                        <h2 data-i18n="section_skills" class="font-heading text-xl sm:text-2xl font-bold text-slate-900">Keahlian</h2>
+                    </div>
+
+                    <div class="flex flex-wrap gap-2.5">
+                        <!-- Badge Keahlian -->
+                        <span class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-900 text-white text-sm font-medium shadow-sm">
+                            <i class="fa-brands fa-laravel text-rose-400"></i>
+                            <span>Laravel</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 text-slate-800 border border-slate-200 text-sm font-medium">
+                            <i class="fa-brands fa-php text-indigo-600"></i>
+                            <span>PHP</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 text-slate-800 border border-slate-200 text-sm font-medium">
+                            <i class="fa-solid fa-database text-sky-600"></i>
+                            <span>MySQL</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-slate-100 text-slate-800 border border-slate-200 text-sm font-medium">
+                            <i class="fa-brands fa-html5 text-orange-500"></i>
+                            <span>HTML & CSS</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-teal-50 text-teal-800 border border-teal-200 text-sm font-medium">
+                            <i class="fa-solid fa-network-wired text-teal-600"></i>
+                            <span data-i18n="skill_network">Computer Networking & MikroTik (MTCNA)</span>
+                        </span>
+                        <span class="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-sky-50 text-sky-800 border border-sky-200 text-sm font-medium">
+                            <i class="fa-solid fa-lightbulb text-sky-600"></i>
+                            <span>Problem Solving</span>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="mt-6 pt-5 border-t border-slate-100">
+                    <p data-i18n="skill_note" class="text-xs text-slate-500 leading-relaxed">
+                        Siap berkontribusi dalam pengembangan aplikasi web maupun pengelolaan infrastruktur jaringan komputer.
+                    </p>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="no-print border-t border-slate-200 bg-white mt-12">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+            <p>© 2026 <strong class="text-slate-800">Rio Ferdianto Putra</strong>. <span data-i18n="footer_rights">Hak Cipta Dilindungi.</span></p>
+            <div class="flex items-center gap-4">
+                <a href="mailto:rferdianto28@gmail.com" class="hover:text-sky-600 transition-colors flex items-center gap-1.5">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>rferdianto28@gmail.com</span>
+                </a>
+                <a href="https://instagram.com/ferdianto_rio" target="_blank" rel="noopener noreferrer" class="hover:text-sky-600 transition-colors flex items-center gap-1.5">
+                    <i class="fa-brands fa-instagram"></i>
+                    <span>@ferdianto_rio</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Script Bahasa (Default: Bahasa Indonesia) & Utilitas -->
+    <script>
+        // Kamus Terjemahan Lengkap (ID & EN)
+        const translations = {
+            id: {
+                nav_about: "Tentang Saya",
+                nav_exp: "Pengalaman",
+                nav_projects: "Proyek",
+                nav_edu: "Pendidikan",
+                nav_skills: "Keahlian",
+                btn_print: "Cetak / PDF",
+                hero_badge: "Tersertifikasi MTCNA • Lulusan Teknik Informatika",
+                hero_tagline: "IT & Web Developer | Network Enthusiast (MTCNA Certified)",
+                contact_location: "Padang, Sumatera Barat, Indonesia",
+                section_about: "Tentang Saya",
+                about_desc: "Lulusan Pendidikan Teknik Informatika Universitas Negeri Padang yang adaptif dan cepat belajar terhadap teknologi baru. Memiliki keterampilan dalam Web Design dan Pengembangan Web menggunakan HTML, CSS, PHP, Laravel, dan MySQL. Memahami dasar jaringan, konfigurasi perangkat, serta troubleshooting. Bersertifikasi MTCNA (MikroTik Certified Network Associate) dengan kompetensi dalam manajemen perangkat MikroTik.",
+                section_exp: "Pengalaman Magang",
+                exp_badge_1: "Program Magang KEMNAKER",
+                exp_role_1: "Magang Program KEMNAKER sebagai Staff ICT",
+                exp_desc_1: "Bertanggung jawab dalam dukungan operasional teknologi informasi dan komunikasi (ICT), pemeliharaan sistem jaringan, serta pengembangan aplikasi internal untuk menunjang digitalisasi administrasi yayasan.",
+                exp_badge_2: "Praktek Lapangan Industri",
+                exp_role_2: "Praktek Lapangan Industri di Bidang Pengendalian Pelaksanaan Penanaman Modal dan Sistem Informasi Penanaman Modal",
+                exp_desc_2: "Membantu pengelolaan data dan sistem informasi penanaman modal serta mendukung kelancaran operasional teknis pada bidang pengendalian pelaksanaan penanaman modal daerah.",
+                exp_badge_3: "Praktek Lapangan Kependidikan",
+                exp_role_3: "Praktek Lapangan Kependidikan di Jurusan TKJ (Teknik Komputer dan Jaringan)",
+                exp_desc_3: "Melaksanakan kegiatan pembelajaran praktik dan teori pada kompetensi keahlian Teknik Komputer dan Jaringan (TKJ), serta membantu pengelolaan laboratorium komputer sekolah.",
+                section_projects: "Riwayat Proyek",
+                proj_title_1: "Aplikasi Sistem Dokumen Online Yayasan Igasar Semen Padang",
+                proj_desc_1: "Sistem manajemen dan pengarsipan dokumen berbasis web untuk mempermudah akses, distribusi, serta pengelolaan berkas digital di lingkungan Yayasan Igasar Semen Padang.",
+                proj_title_2: "Website Profile Semen Padang Schools (SD, SMP, SMA, SMK Semen Padang)",
+                proj_desc_2: "Portal profil resmi terintegrasi untuk unit pendidikan SD, SMP, SMA, dan SMK Semen Padang yang menyajikan informasi akademik, fasilitas, dan publikasi kegiatan sekolah.",
+                proj_title_3: "Aplikasi Sistem Monitoring Kehadiran dan Pelanggaran Siswa SMK Muhammadiyah 1 Padang",
+                proj_desc_3: "Aplikasi web untuk mencatat, memantau, dan merekapitulasi data presensi harian serta poin kedisiplinan siswa secara terstruktur bagi pihak sekolah.",
+                section_edu: "Pendidikan & Sertifikasi",
+                edu_major: "Pendidikan Teknik Informatika",
+                cert_badge: "Sertifikasi Resmi",
+                cert_desc: "Kompetensi profesional dalam konfigurasi, manajemen perangkat router, keamanan jaringan dasar, dan troubleshooting berbasis MikroTik RouterOS.",
+                section_skills: "Keahlian",
+                skill_network: "Computer Networking & MikroTik (MTCNA)",
+                skill_note: "Siap berkontribusi dalam pengembangan aplikasi web maupun pengelolaan infrastruktur jaringan komputer.",
+                footer_rights: "Hak Cipta Dilindungi.",
+                copied: "Tersalin!",
+                photo_alt: "Foto Profil Rio Ferdianto Putra"
+            },
+            en: {
+                nav_about: "About Me",
+                nav_exp: "Experience",
+                nav_projects: "Projects",
+                nav_edu: "Education",
+                nav_skills: "Skills",
+                btn_print: "Print / PDF",
+                hero_badge: "MTCNA Certified • Informatics Engineering Graduate",
+                hero_tagline: "IT & Web Developer | Network Enthusiast (MTCNA Certified)",
+                contact_location: "Padang, West Sumatra, Indonesia",
+                section_about: "About Me",
+                about_desc: "Informatics Engineering Education graduate from Universitas Negeri Padang who is adaptable and a fast learner of new technologies. Skilled in Web Design and Web Development using HTML, CSS, PHP, Laravel, and MySQL. Experienced in networking fundamentals, device configuration, and troubleshooting. Certified MTCNA (MikroTik Certified Network Associate) with strong competency in MikroTik device management.",
+                section_exp: "Internship Experience",
+                exp_badge_1: "KEMNAKER Internship",
+                exp_role_1: "KEMNAKER Internship Program as ICT Staff",
+                exp_desc_1: "Responsible for Information and Communication Technology (ICT) operational support, network system maintenance, and internal web application development to support foundation administration digitalization.",
+                exp_badge_2: "Industrial Field Practice",
+                exp_role_2: "Industrial Field Practice in Investment Implementation Control and Investment Information Systems",
+                exp_desc_2: "Assisted in managing investment data and information systems while supporting technical operations in regional investment implementation control.",
+                exp_badge_3: "Educational Field Practice",
+                exp_role_3: "Educational Field Practice in Computer and Network Engineering (TKJ) Department",
+                exp_desc_3: "Conducted practical and theoretical teaching activities in the Computer and Network Engineering (TKJ) program, and assisted in managing school computer laboratories.",
+                section_projects: "Project History",
+                proj_title_1: "Online Document System Application - Yayasan Igasar Semen Padang",
+                proj_desc_1: "Web-based document management and archiving system designed to streamline access, distribution, and digital file management across Yayasan Igasar Semen Padang.",
+                proj_title_2: "Semen Padang Schools Profile Website (Elementary, Junior High, Senior High, and Vocational High School)",
+                proj_desc_2: "Integrated official profile portal for Semen Padang educational units (SD, SMP, SMA, and SMK) presenting academic information, facilities, and school activity publications.",
+                proj_title_3: "Student Attendance and Violation Monitoring System Application - SMK Muhammadiyah 1 Padang",
+                proj_desc_3: "Web application to record, monitor, and recapitulate daily student attendance and disciplinary records in a structured manner for school administration.",
+                section_edu: "Education & Certification",
+                edu_major: "Informatics Engineering Education",
+                cert_badge: "Official Certification",
+                cert_desc: "Professional competency in configuration, router device management, basic network security, and troubleshooting based on MikroTik RouterOS.",
+                section_skills: "Skills",
+                skill_network: "Computer Networking & MikroTik (MTCNA)",
+                skill_note: "Ready to contribute to web application development as well as computer network infrastructure management.",
+                footer_rights: "All Rights Reserved.",
+                copied: "Copied!",
+                photo_alt: "Profile Photo of Rio Ferdianto Putra"
+            }
+        };
+
+        // State default: Bahasa Indonesia ('id')
+        let currentLang = 'id';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.documentElement.lang = lang;
+
+            // Perbarui semua elemen yang memiliki atribut data-i18n
+            const elements = document.querySelectorAll('[data-i18n]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang] && translations[lang][key]) {
+                    el.textContent = translations[lang][key];
+                }
+            });
+
+            // Perbarui teks alt gambar yang memiliki atribut data-i18n-alt
+            const altElements = document.querySelectorAll('[data-i18n-alt]');
+            altElements.forEach(el => {
+                const key = el.getAttribute('data-i18n-alt');
+                if (translations[lang] && translations[lang][key]) {
+                    el.alt = translations[lang][key];
+                }
+            });
+
+            // Perbarui teks umpan balik salin email
+            const copyFeedback = document.getElementById('copy-feedback');
+            if (copyFeedback) {
+                copyFeedback.textContent = translations[lang].copied;
+            }
+
+            // Perbarui gaya visual tombol bahasa aktif
+            const btnId = document.getElementById('btn-lang-id');
+            const btnEn = document.getElementById('btn-lang-en');
+
+            if (lang === 'id') {
+                btnId.className = "px-2.5 py-1 text-xs font-semibold rounded-md transition-all bg-slate-900 text-white shadow-sm";
+                btnEn.className = "px-2.5 py-1 text-xs font-semibold rounded-md transition-all text-slate-600 hover:text-slate-900";
+            } else {
+                btnEn.className = "px-2.5 py-1 text-xs font-semibold rounded-md transition-all bg-slate-900 text-white shadow-sm";
+                btnId.className = "px-2.5 py-1 text-xs font-semibold rounded-md transition-all text-slate-600 hover:text-slate-900";
+            }
+        }
+
+        // Fungsi salin alamat email menggunakan metode yang kompatibel di dalam iframe
+        function copyEmail() {
+            const email = "rferdianto28@gmail.com";
+            const tempInput = document.createElement("input");
+            tempInput.value = email;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            try {
+                document.execCommand("copy");
+                const feedback = document.getElementById("copy-feedback");
+                feedback.classList.remove("opacity-0");
+                setTimeout(() => {
+                    feedback.classList.add("opacity-0");
+                }, 2000);
+            } catch (err) {
+                console.error("Gagal menyalin email", err);
+            }
+            document.body.removeChild(tempInput);
+        }
+
+        // Inisialisasi bahasa default saat halaman dimuat
+        window.addEventListener('DOMContentLoaded', () => {
+            setLanguage('id');
+        });
+    </script>
+</body>
+</html>
